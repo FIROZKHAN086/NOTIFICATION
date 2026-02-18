@@ -5,15 +5,15 @@ const sendEmail = async (req, res) => {
 
   console.log(req.body);
   
-
+try {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
-    secure: true,
-     port: 465,
+    port: 465,
     auth:{
-        user:"computerpc096@gmail.com",
-        pass: "tigw mrdz mgin mxej"
-    }
+      user:"computerpc096@gmail.com",
+      pass: "tigw mrdz mgin mxej"
+    },
+    secure: true
   })
 
   if (!to || !subject || !text) {
@@ -304,7 +304,7 @@ const sendEmail = async (req, res) => {
   `
 };
 
-  try {
+  
     await transporter.sendMail(mailOptions);
     console.log('Email sent successfully');
    res.status(200).json({
